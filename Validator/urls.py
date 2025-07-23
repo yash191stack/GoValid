@@ -6,6 +6,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("",include('home.urls')),
     path("accounts/",include('accounts.urls')),
-   path("dashboard/",include('dashboard.urls'),name="dashboard"),
+    path("dashboard/",include('dashboard.urls')),
+    path("swot/",include('dashboard.urls')),
 ]
 # maine ismai ek comment aad kiya hai

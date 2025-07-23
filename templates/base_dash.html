@@ -1,0 +1,168 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ValidatorAI - Validate Your Startup Idea</title>
+    <link rel="stylesheet" href="{% static 'css/base_dash.css' %}">
+    {% block head %} {% endblock %}
+
+</head>
+
+<body>
+    <div class="floating-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- Guide Popup Toggle (CSS Only) -->
+    <input type="checkbox" id="guideToggle" class="guide-toggle">
+    <div class="guide-popup">
+        <div class="guide-backdrop"></div>
+        <div class="guide-content">
+            <label for="guideToggle" class="close-guide">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </label>
+
+            <div>
+                <h3 style="font-size: 24px; font-weight: 700; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; color: #1f2937;">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: #7c3aed;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3l14 9-14 9V3z"></path>
+                    </svg>
+                    Goals Guide
+                </h3>
+
+                <div>
+                    <div class="guide-item guide-blue">
+                        <h4>🎯 Business Vision</h4>
+                        <p>Define your long-term mission and what you want to achieve with your startup.</p>
+                    </div>
+
+                    <div class="guide-item guide-green">
+                        <h4>💰 Monetization</h4>
+                        <p>Explain how you'll generate revenue - subscription, one-time payment, freemium, etc.</p>
+                    </div>
+
+                    <div class="guide-item guide-purple">
+                        <h4>🌍 Social Impact</h4>
+                        <p>Describe the positive change your startup will create in society.</p>
+                    </div>
+
+                    <div class="guide-item guide-orange">
+                        <h4>⏱ Timeline</h4>
+                        <p>Set short-term and long-term milestones with realistic timeframes.</p>
+                    </div>
+
+                    <div class="guide-item guide-pink">
+                        <h4>📈 Success Metrics</h4>
+                        <p>Define how you'll measure success - user growth, revenue targets, market share.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="brand">🚀 ValidatorAI</div>
+            <div class="nav-menu">
+                <a href="#" class="nav-link">Dashboard</a>
+                <a href="#" class="nav-link">Analytics</a>
+                <a href="#" class="nav-link">Reports</a>
+                <a href="#" class="nav-link">Help</a>
+            </div>
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <a href="#" class="logout-btn">Logout</a>
+                <div class="user-avatar">U</div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Analysis Tools</h3>
+                <div>
+                    <a href="{% url 'dashboard' %}" class="sidebar-item active">
+                        <span>📝</span>
+                        <span>Idea Validation Form</span>
+                    </a>
+                    <a href="{% url 'swot' %}" class="sidebar-item">
+                        <span>📊</span>
+                        <span>SWOT Analysis</span>
+                        <span class="sidebar-badge">AI</span>
+                    </a>
+                    <a href="#" class="sidebar-item">
+                        <span>📈</span>
+                        <span>Feasibility Scores</span>
+                    </a>
+                    <a href="#" class="sidebar-item">
+                        <span>💰</span>
+                        <span>Monetization Analysis</span>
+                    </a>
+                    <a href="#" class="sidebar-item">
+                        <span>⚠</span>
+                        <span>Risk Assessment</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Reports & Insights</h3>
+                <div>
+                    <a href="#" class="sidebar-item">
+                        <span>💡</span>
+                        <span>AI Suggestions</span>
+                        <span class="sidebar-badge new">NEW</span>
+                    </a>
+                    <a href="#" class="sidebar-item">
+                        <span>🏆</span>
+                        <span>Competitor Analysis</span>
+                    </a>
+                    <a href="#" class="sidebar-item">
+                        <span>🌍</span>
+                        <span>Market Research</span>
+                    </a>
+                    <a href="#" class="sidebar-item">
+                        <span>📅</span>
+                        <span>Implementation Timeline</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Resources</h3>
+                <div>
+                    <a href="#" class="sidebar-item">
+                        <span>📋</span>
+                        <span>Business Templates</span>
+                    </a>
+                    <a href="#" class="sidebar-item">
+                        <span>📚</span>
+                        <span>Startup Guides</span>
+                    </a>
+                    <a href="#" class="sidebar-item">
+                        <span>👥</span>
+                        <span>Community Forum</span>
+                    </a>
+                </div>
+            
+        </aside>
+        {% block body %}
+    </div>
+        {% endblock %}
+      
+    
+
+</body>
+
+</html>

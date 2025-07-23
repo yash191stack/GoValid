@@ -62,3 +62,11 @@ def dashboard(request):
         return redirect("dashboard:dashboard")
 
     return render(request,"dashboard/dashboard.html")
+
+
+# ============================================SWOT Page===============================================================================
+@login_required
+def swot(request):
+    
+    return render(request,"dashboard/swot.html")
+
