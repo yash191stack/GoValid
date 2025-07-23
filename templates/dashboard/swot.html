@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block body %}
+<title>SWOT Analysis - Startup Validator</title>
+<style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #e0f7fa, #ffffff);
+        padding: 40px;
+    }
+
+    .swot-heading {
+        text-align: center;
+        font-size: 3rem;
+        font-weight: 700;
+        background: linear-gradient(to right, #00796b, #26a69a);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 40px;
+    }
+
+    .swot-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+    }
+
+    .swot-box {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        padding: 25px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        transition: 0.3s ease-in-out;
+    }
+
+    .swot-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .swot-title {
+        font-size: 1.6rem;
+        margin-bottom: 15px;
+        font-weight: bold;
+        color: #004d40;
+        border-bottom: 2px solid #26a69a;
+        padding-bottom: 5px;
+    }
+
+    .swot-text {
+        font-size: 1rem;
+        color: #333;
+        white-space: pre-wrap;
+    }
+</style>
+
+<h1 class="swot-heading">SWOT Analysis</h1>
+
+<div class="swot-container">
+    <div class="swot-box">
+        <div class="swot-title">Strengths</div>
+        <div class="swot-text">{{ swot_data.strengths }}</div>
+    </div>
+    <div class="swot-box">
+        <div class="swot-title">Weaknesses</div>
+        <div class="swot-text">{{ swot_data.weaknesses }}</div>
+    </div>
+    <div class="swot-box">
+        <div class="swot-title">Opportunities</div>
+        <div class="swot-text">{{ swot_data.opportunities }}</div>
+    </div>
+    <div class="swot-box">
+        <div class="swot-title">Threats</div>
+        <div class="swot-text">{{ swot_data.threats }}</div>
+    </div>
+</div>
+{% endblock %}
