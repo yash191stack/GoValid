@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -133,12 +132,12 @@
             <div class="flex items-center justify-between">
                 <div class="text-2xl font-bold text-gray-800 flex items-center gap-3">🚀 ValidatorAI</div>
                 <div class="hidden md:flex items-center gap-8">
-                    <a href="{% url 'dashboard' %}" class="text-gray-600 hover:text-gray-800 px-4 py-2 rounded-full hover:bg-gradient-to-r hover:from-indigo-500 hover:to-purple-500 hover:text-white transition-all duration-200 hover:-translate-y-0.5">Dashboard</a>
-                    <a href="#analytics" class="text-gray-600 hover:text-gray-800 px-4 py-2 rounded-full hover:bg-gradient-to-r hover:from-indigo-500 hover:to-purple-500 hover:text-white transition-all duration-200 hover:-translate-y-0.5">Analytics</a>
+                    <a href="{% url 'dashboard:dashboard' %}" class="text-gray-600 hover:text-gray-800 px-4 py-2 rounded-full hover:bg-gradient-to-r hover:from-indigo-500 hover:to-purple-500 hover:text-white transition-all duration-200 hover:-translate-y-0.5">Dashboard</a>
+                    <a href="{% url 'dashboard:history' %}" class="text-gray-600 hover:text-gray-800 px-4 py-2 rounded-full hover:bg-gradient-to-r hover:from-indigo-500 hover:to-purple-500 hover:text-white transition-all duration-200 hover:-translate-y-0.5">History</a>
                     <a href="#reports" class="text-gray-600 hover:text-gray-800 px-4 py-2 rounded-full hover:bg-gradient-to-r hover:from-indigo-500 hover:to-purple-500 hover:text-white transition-all duration-200 hover:-translate-y-0.5">Reports</a>
                     <a href="#help" class="text-gray-600 hover:text-gray-800 px-4 py-2 rounded-full hover:bg-gradient-to-r hover:from-indigo-500 hover:to-purple-500 hover:text-white transition-all duration-200 hover:-translate-y-0.5">Help</a>
                     <button>
-                <a href="{% url 'home' %}" class="register-btn">Logout</a>
+                <a href="{% url 'accounts:logout' %}" class="register-btn">Logout</a>
             </button>
                 </div>
                 <div class="w-10 h-10 bg-gradient-to-r from-pink-500 to-orange-500 rounded-full flex items-center justify-center text-white font-bold cursor-pointer hover:scale-110 transition-all duration-200 shadow-lg">U</div>
@@ -159,7 +158,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#swot" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 hover:bg-gradient-to-r hover:from-indigo-500 hover:to-purple-500 hover:text-white transition-all duration-200 hover:translate-x-1">
+                                <a href="{% url 'dashboard:swot' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-gray-600 hover:bg-gradient-to-r hover:from-indigo-500 hover:to-purple-500 hover:text-white transition-all duration-200 hover:translate-x-1">
                                     <span>📊</span>
                                     <span>SWOT Analysis</span>
                                     <span class="ml-auto bg-red-500 text-white text-xs px-2 py-1 rounded-full">AI</span>
@@ -261,7 +260,7 @@
                             <form id="validationForm" method="POST" class="space-y-8">
                                 {% csrf_token %}
                                 <!-- CSRF Token for Django -->
-                                <input type="hidden" \>
+                               
                                 
                                 <!-- Startup Idea -->
                                 <div class="space-y-3">
@@ -404,20 +403,20 @@
 
     <script>
         // Get CSRF token for Django
-        function getCookie(name) {
-            let cookieValue = null;
-            if (document.cookie && document.cookie !== '') {
-                const cookies = document.cookie.split(';');
-                for (let i = 0; i < cookies.length; i++) {
-                    const cookie = cookies[i].trim();
-                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
-                }
-            }
-            return cookieValue;
-        }
+        // function getCookie(name) {
+        //     let cookieValue = null;
+        //     if (document.cookie && document.cookie !== '') {
+        //         const cookies = document.cookie.split(';');
+        //         for (let i = 0; i < cookies.length; i++) {
+        //             const cookie = cookies[i].trim();
+        //             if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        //                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        //                 break;
+        //             }
+        //         }
+        //     }
+        //     return cookieValue;
+        // }
 
         function showGuide() {
             document.getElementById('guidePopup').classList.remove('hidden');
@@ -428,12 +427,12 @@
         }
 
         // AI Chat function - Django ke saath integrate
-        function sendMessageToAI() {
-            const input = document.getElementById('messageInput');
-            const message = input.value.trim();
-            if (!message) return;
+        // function sendMessageToAI() {
+        //     const input = document.getElementById('messageInput');
+        //     const message = input.value.trim();
+        //     if (!message) return;
 
-            const chatMessages = document.getElementById('chatMessages');
+        //     const chatMessages = document.getElementById('chatMessages');
             
             // Add user message
             const userMessage = `
@@ -532,7 +531,7 @@
                 chatMessages.innerHTML += aiMessage;
                 chatMessages.scrollTop = chatMessages.scrollHeight;
             });
-        }
+        
 
         function handleKeyPress(event) {
             if (event.key === 'Enter') {

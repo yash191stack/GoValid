@@ -20,7 +20,7 @@ def register(request):
 )
         new_user.set_password(password)  #Setting the password for the user in an encrpted
         new_user.save()
-        return redirect("dashboard")
+        return redirect("dashboard:dashboard")
     return render(request,"accounts/register.html")
 
 # ==================================Login==================================================
@@ -31,6 +31,10 @@ def login(request):
         user = auth.authenticate(request,username=username , password=password)
         if user is not None :
             auth.login(request,user)
-            return redirect("dashboard")
+            return redirect("dashboard:dashboard")
         
     return render(request,"accounts/login.html")
+
+def custom_logout(request):
+    logout(request)
+    return redirect('home') 

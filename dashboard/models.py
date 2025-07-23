@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Create your models here.
 DOMAIN_CHOICES = [
@@ -15,10 +17,14 @@ DOMAIN_CHOICES = [
 ]
 
 class Validate_form(models.Model):
+    
+    created_at = models.DateTimeField(auto_now_add=True)  # ✅ keep only this line
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
+
     startup_idea = models.TextField()
     business_domain = models.CharField(max_length=50, choices=DOMAIN_CHOICES)
     problem_statement = models.TextField()
-
     business_goal = models.TextField()
     monetization_strategy = models.TextField()
     social_impact = models.TextField()

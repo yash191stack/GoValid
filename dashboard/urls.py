@@ -2,6 +2,13 @@ from django.contrib import admin
 from django.urls import path,include
 from .import views
 
+app_name = "dashboard" 
+
 urlpatterns = [
     path("",views.dashboard,name="dashboard"),
+    path("swot/",views.swot,name="swot"),
+    path('feasibility/', views.feasibility, name='feasibility'),
+    path('risk/', views.risk, name='risk'),
+    path("history/", views.history, name="history"),
+    path('delete/<int:id>/', views.delete_submission, name='delete'),
 ]

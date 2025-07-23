@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Validate AI Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}" defer></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .top-navbar {
+            height: 60px;
+            background-color: #1d3557;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+        }
+
+        .side-navbar {
+            height: 100vh;
+            width: 220px;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            background-color: #457b9d;
+            padding-top: 30px;
+        }
+
+        .side-navbar a {
+            display: block;
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .side-navbar a:hover {
+            background-color: #1d3557;
+        }
+
+        .main-content {
+            margin-left: 220px;
+            margin-top: 60px;
+            padding: 30px;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-navbar">
+        <div class="logo">Validate AI</div>
+        <div>Welcome, User</div>
+    </div>
+
+    <div class="side-navbar">
+        <a href="{% url 'dashboard:dashboard' %}">Dashboard</a>
+        <a href="{% url 'dashboard:swot' %}">SWOT Analysis</a>
+        <a href="{% url 'dashboard:risk' %}">Risk Evaluation</a>
+        <a href="{% url 'dashboard:feasibility' %}">Feasibility Check</a>
+        <a href="{% url 'accounts:logout' %}">Logout</a>
+    </div>
+
+    <div class="main-content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+{% extends "dashboard/base_dash.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Your Submission History</h2>
+    <div class="row">
+        {% for entry in submissions %}
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-lg rounded-4 p-3" style="background: #f9f9f9;">
+                <h5><strong>Startup Idea:</strong> {{ entry.startup_idea }}</h5>
+                <p><strong>Business Goal:</strong> {{ entry.business_goal }}</p>
+                <!-- <p><strong>AI Analysis:</strong> {{ entry.ai_analysis|default:"N/A" }}</p> -->
+                <p class="text-muted"><small>Submitted on: {{ entry.created_at|date:"M d, Y H:i" }}</small></p>
+                <form action="{% url 'dashboard:delete' entry.id %}" method="POST" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" onclick="return confirm('Are you sure?')" class="btn btn-danger">🗑️ Delete</button>
+            </div>
+            </form>
+        </div>
+        {% empty %}
+        <p>No submissions found.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
