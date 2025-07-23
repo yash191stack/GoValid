@@ -1122,10 +1122,10 @@
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-container">
-            <div class="brand">🚀 ValidatorAI</div>
+            <div class="brand">🚀 GoValid</div>
             <div class="nav-menu">
-                <a href="#" class="nav-link">Dashboard</a>
-                <a href="#" class="nav-link">Analytics</a>
+                
+                <a href="{% url 'dashboard:history' %}" class="nav-link">History</a>
                 <a href="#" class="nav-link">Reports</a>
                 <a href="#" class="nav-link">Help</a>
             </div>
@@ -1222,6 +1222,7 @@
 
                     <div class="form-container">
                         <form method="POST">
+                            {% csrf_token %}
                             <!-- Startup Idea -->
                             <div class="form-section">
                                 <label class="form-label">

@@ -20,7 +20,7 @@ def register(request):
 )
         new_user.set_password(password)  #Setting the password for the user in an encrpted
         new_user.save()
-        return redirect("dashboard:dashboard")
+        return redirect("accounts:login")
     return render(request,"accounts/register.html")
 
 # ==================================Login==================================================
