@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startup Risk Assessment | Validator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        /* Floating background elements */
+        .bg-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 20s infinite linear;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 15%;
+            animation-delay: -5s;
+        }
+
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            top: 80%;
+            left: 20%;
+            animation-delay: -10s;
+        }
+
+        .shape:nth-child(4) {
+            width: 100px;
+            height: 100px;
+            top: 30%;
+            right: 30%;
+            animation-delay: -15s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+                opacity: 1;
+            }
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: slideDown 1s ease-out;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Main content grid */
+        .risk-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Risk category cards */
+        .risk-category {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            animation: fadeInUp 0.8s ease-out;
+            animation-fill-mode: both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .risk-category:nth-child(1) { animation-delay: 0.2s; }
+        .risk-category:nth-child(2) { animation-delay: 0.4s; }
+        .risk-category:nth-child(3) { animation-delay: 0.6s; }
+
+        .risk-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .risk-category:hover::before {
+            left: 100%;
+        }
+
+        .risk-category:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .risk-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .risk-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-right: 1rem;
+            animation: pulse 2s infinite;
+        }
+
+        .market-risk .risk-icon {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+        }
+
+        .technical-risk .risk-icon {
+            background: linear-gradient(135deg, #4ecdc4, #44bd87);
+        }
+
+        .financial-risk .risk-icon {
+            background: linear-gradient(135deg, #45b7d1, #96ceb4);
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .risk-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .risk-subtitle {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .risk-items {
+            list-style: none;
+        }
+
+        .risk-item {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .risk-item:last-child {
+            border-bottom: none;
+        }
+
+        .risk-item:hover {
+            padding-left: 1rem;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .risk-item::before {
+            content: '⚠️';
+            margin-right: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .risk-item:hover::before {
+            transform: scale(1.2);
+        }
+
+        /* Assessment form */
+        .assessment-form {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+
+        .form-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            color: #34495e;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid rgba(0,0,0,0.1);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+        }
+        /* Active (clicked) styling using sibling selectors */
+input.risk-toggle:checked + .risk-category {
+    border: 2px solid #764ba2;
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 20px 50px rgba(118, 75, 162, 0.25);
+    transform: translateY(-5px) scale(1.02);
+}
+
+input.risk-toggle:checked + .risk-category .risk-icon {
+    animation: pulse-glow 1.5s infinite;
+    box-shadow: 0 0 10px rgba(118, 75, 162, 0.4);
+}
+
+@keyframes pulse-glow {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 5px rgba(118, 75, 162, 0.4);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 15px rgba(118, 75, 162, 0.6);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 5px rgba(118, 75, 162, 0.4);
+    }
+}
+
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 2rem auto 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Risk level indicators */
+        .risk-level {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .risk-high {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+        }
+
+        .risk-medium {
+            background: linear-gradient(135deg, #feca57, #ff9ff3);
+            color: white;
+        }
+
+        .risk-low {
+            background: linear-gradient(135deg, #48dbfb, #0abde3);
+            color: white;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+
+            .risk-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .risk-category {
+                padding: 1.5rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        /* Loading animation for form */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Startup Risk Assessment</h1>
+            <p>Comprehensive analysis to identify and evaluate potential risks that could impact your startup's success. Make informed decisions with our detailed risk framework.</p>
+        </div>
+        <div class="risk-grid">
+
+    <!-- Market Risk -->
+    <label>
+        <input type="radio" name="risk-select" class="risk-toggle" hidden>
+        <div class="risk-category market-risk">
+            <div class="risk-header">
+                <div class="risk-icon">📊</div>
+                <div>
+                    <h3 class="risk-title">Market Risk</h3>
+                    <p class="risk-subtitle">Market dynamics & competition</p>
+                    <span class="risk-level risk-high">High Impact</span>
+                </div>
+            </div>
+            <ul class="risk-items">
+                <li class="risk-item">Market size overestimation</li>
+                <li class="risk-item">Intense competitive landscape</li>
+                <li class="risk-item">Customer adoption challenges</li>
+                <li class="risk-item">Market timing misalignment</li>
+                <li class="risk-item">Economic downturns impact</li>
+            </ul>
+        </div>
+    </label>
+
+    <!-- Technical Risk -->
+    <label>
+        <input type="radio" name="risk-select" class="risk-toggle" hidden>
+        <div class="risk-category technical-risk">
+            <div class="risk-header">
+                <div class="risk-icon">⚡</div>
+                <div>
+                    <h3 class="risk-title">Technical Risk</h3>
+                    <p class="risk-subtitle">Technology & development challenges</p>
+                    <span class="risk-level risk-medium">Medium Impact</span>
+                </div>
+            </div>
+            <ul class="risk-items">
+                <li class="risk-item">Technical feasibility concerns</li>
+                <li class="risk-item">Scalability limitations</li>
+                <li class="risk-item">Security vulnerabilities</li>
+                <li class="risk-item">Development delays</li>
+                <li class="risk-item">Technology obsolescence</li>
+            </ul>
+        </div>
+    </label>
+
+    <!-- Financial Risk -->
+    <label>
+        <input type="radio" name="risk-select" class="risk-toggle" hidden>
+        <div class="risk-category financial-risk">
+            <div class="risk-header">
+                <div class="risk-icon">💰</div>
+                <div>
+                    <h3 class="risk-title">Financial Risk</h3>
+                    <p class="risk-subtitle">Funding & financial sustainability</p>
+                    <span class="risk-level risk-high">High Impact</span>
+                </div>
+            </div>
+            <ul class="risk-items">
+                <li class="risk-item">Cash flow management</li>
+                <li class="risk-item">Funding acquisition difficulties</li>
+                <li class="risk-item">Revenue model validation</li>
+                <li class="risk-item">Cost overruns</li>
+                <li class="risk-item">Financial planning accuracy</li>
+            </ul>
+        </div>
+    </label>
+</div>
+
+
+        
+
+        <div class="assessment-form">
+            <h2 class="form-title">📋 Risk Assessment Questionnaire</h2>
+            <form>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="startup-name">Startup Name</label>
+                        <input type="text" id="startup-name" name="startup-name" placeholder="Enter your startup name">
+                    </div>
+                    <div class="form-group">
+                        <label for="industry">Industry</label>
+                        <select id="industry" name="industry">
+                            <option value="">Select industry</option>
+                            <option value="fintech">FinTech</option>
+                            <option value="healthtech">HealthTech</option>
+                            <option value="edtech">EdTech</option>
+                            <option value="ecommerce">E-commerce</option>
+                            <option value="saas">SaaS</option>
+                            <option value="ai-ml">AI/ML</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="funding-stage">Funding Stage</label>
+                        <select id="funding-stage" name="funding-stage">
+                            <option value="">Select stage</option>
+                            <option value="pre-seed">Pre-seed</option>
+                            <option value="seed">Seed</option>
+                            <option value="series-a">Series A</option>
+                            <option value="series-b">Series B+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="team-size">Team Size</label>
+                        <input type="number" id="team-size" name="team-size" placeholder="Number of team members">
+                    </div>
+                    <div class="form-group">
+                        <label for="revenue-model">Revenue Model</label>
+                        <select id="revenue-model" name="revenue-model">
+                            <option value="">Select model</option>
+                            <option value="subscription">Subscription</option>
+                            <option value="transaction">Transaction-based</option>
+                            <option value="advertising">Advertising</option>
+                            <option value="marketplace">Marketplace</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="market-validation">Market Validation Level</label>
+                        <select id="market-validation" name="market-validation">
+                            <option value="">Select level</option>
+                            <option value="none">No validation</option>
+                            <option value="surveys">Surveys/Interviews</option>
+                            <option value="mvp">MVP tested</option>
+                            <option value="paying-customers">Paying customers</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="risk-concerns">Primary Risk Concerns</label>
+                    <textarea id="risk-concerns" name="risk-concerns" rows="4" placeholder="Describe your main concerns and potential risks you've identified..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                    Generate Risk Assessment Report
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

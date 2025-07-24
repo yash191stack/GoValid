@@ -3,7 +3,9 @@ from django.contrib.auth.decorators import login_required
 from .models import Validate_form
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
-
+import requests
+import json
+api_key="AIzaSyCGqjrH4vDQVeKu_cepFVYxI5hy_rtJNQw"
 # Create your views here.
 
 def swot(request):
@@ -62,3 +64,41 @@ def dashboard(request):
         return redirect("dashboard:dashboard")
 
     return render(request,"dashboard/dashboard.html")
+#--------------GEN AI PART---------------------
+@login_required
+def ai_sugg(request):
+    if request.method=="POST":
+        query=request.POST.get("query")
+        response=generate_response(query)
+        parameters = {
+            "response": response,
+        }
+        return render(request, "dashboard/ai_sugg.html", parameters)
+
+
+    return render(request, "dashboard/ai_sugg.html")
+
+def generate_response(query):
+    prompt= "You are a startup validator expert who has all the knowledge of the market and have good skills to validate a startup idea. by using simple hinglish, respond to the user who will ask their query to you related to their startup idea. the idea is :" + query
+    
+
+    api = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
+    payload = {
+        "contents": [{"parts": [{"text": prompt}]}]
+        }
+
+    headers = {
+        "Content-Type": "application/json"
+    }
+
+    response = requests.post(api, json=payload, headers=headers)
+    print(response.status_code)
+    
+    response = eval(response.text)["candidates"][0]["content"]["parts"][0]["text"]
+    return response
+
+#-------------
+def guide(request):
+    return render(request, "dashboard/guide.html")
+def risk(request):
+    return render(request, "dashboard/risk.html")
