@@ -70,3 +70,10 @@ def swot(request):
     
     return render(request,"dashboard/swot.html")
 
+# =================================================feasibility_score====================================================================
+
+@login_required
+def feasibility(request):
+    
+    return render(request,"dashboard/feasibility_score.html")
+

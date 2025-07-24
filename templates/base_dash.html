@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ValidatorAI - Validate Your Startup Idea</title>
+    <title>{% block title %}ValidatorAI - Validate Your Startup Idea{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/base_dash.css' %}">
     {% block head %} {% endblock %}
 
@@ -101,7 +101,7 @@
                         <span>SWOT Analysis</span>
                         <span class="sidebar-badge">AI</span>
                     </a>
-                    <a href="#" class="sidebar-item {% if request.resolver_match.feasibility == 'feasibility' %} active {% endif %}">
+                    <a href="{% url 'dashboard:feasibility' %}" class="sidebar-item {% if request.resolver_match.feasibility == 'feasibility' %} active {% endif %}">
                         <span>📈</span>
                         <span>Feasibility Scores</span>
                     </a>

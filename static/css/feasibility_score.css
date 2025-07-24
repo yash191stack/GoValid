@@ -1,0 +1,167 @@
+.wrapper {
+          
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .container {
+            margin: 35px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            /* flex: 1 1 60%; */
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .score-wrapper {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .score-value {
+            font-size: 80px;
+            font-weight: bold;
+            color: #ffe600;
+        }
+
+        .score-label {
+            font-size: 24px;
+            margin-top: 10px;
+        }
+
+        .cards {
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            animation: rotate 20s linear infinite;
+            pointer-events: none;
+        }
+        
+        .card h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: black;
+        }
+
+        .tag {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: black;
+        }
+
+        .high {
+            background-color: #2ecc71;
+        }
+
+        /* Green */
+        .medium {
+            background-color: #f1c40f;
+        }
+
+        /* Yellow */
+        .low {
+            background-color: #e74c3c;
+        }
+
+        /* Red */
+
+        .card p {
+            margin: 0;
+            line-height: 1.6;
+            font-size: 15px;
+            color: black;
+        }
+
+        /* Table Styling - Side Box */
+        .table-container {
+            margin: 35px;
+            margin-right: 75px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 20px;
+            flex: 1 1 35%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(8px);
+            min-width: 250px;
+        }
+
+        .table-container h3 {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 8px 10px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+        }
+
+        th {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            font-size: 15px;
+        }
+
+        td {
+            color: #fff;
+        }
+
+        .table-tag {
+            padding: 4px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            display: inline-block;
+        }
+
+        .high-tag {
+            background-color: #2ecc71;
+        }
+
+        .medium-tag {
+            background-color: #f1c40f;
+        }
+
+        .low-tag {
+            background-color: #e74c3c;
+        }
