@@ -31,6 +31,21 @@ def delete_submission(request,id):
         messages.success(request, "Submission deleted.")
     return redirect('dashboard:history')
 
+@login_required
+def update_message(request,id):
+    entry = get_object_or_404(Validate_form, id=id, user=request.user)
+    if request.method == "POST":
+        entry.startup_idea = request.POST.get("startup_idea")
+        entry.business_domain = request.POST.get("business_domain")
+        entry.problem_statement = request.POST.get("problem_statement")
+        entry.business_goal = request.POST.get("business_goal")
+        entry.monetization_strategy = request.POST.get("monetization_strategy")
+        entry.social_impact = request.POST.get("social_impact")
+        entry.timeline = request.POST.get("timeline")
+        entry.save()
+        messages.success(request, "Submission updated successfully.")
+        return redirect("dashboard:history")
+    return render(request,"dashboard/update.html",{'entry': entry})
 
 
 
@@ -64,6 +79,7 @@ def dashboard(request):
         return redirect("dashboard:dashboard")
 
     return render(request,"dashboard/dashboard.html")
+<<<<<<< HEAD
 #--------------GEN AI PART---------------------
 @login_required
 def ai_sugg(request):
@@ -102,3 +118,13 @@ def guide(request):
     return render(request, "dashboard/guide.html")
 def risk(request):
     return render(request, "dashboard/risk.html")
+=======
+
+
+# ============================================SWOT Page===============================================================================
+@login_required
+def swot(request):
+    
+    return render(request,"dashboard/swot.html")
+
+>>>>>>> 4d7ed0d66eb218c86dbaa01e3c74a7d3b1a056ce

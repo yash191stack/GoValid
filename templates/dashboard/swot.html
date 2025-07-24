@@ -1,101 +1,212 @@
-<!-- templates/base_dash.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>ValidateAI Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Bootstrap & FontAwesome CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+{% extends 'base_dash.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/swot.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+{% endblock %}
 
-    <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #f9f9f9;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            width: 220px;
-            height: 100vh;
-            background: linear-gradient(to bottom, #1d3557, #457b9d);
-            position: fixed;
-            top: 0;
-            left: 0;
-            padding-top: 60px;
-            color: white;
-        }
-
-        .sidebar a {
-            color: white;
-            display: block;
-            padding: 15px 20px;
-            text-decoration: none;
-            transition: background 0.3s;
-        }
-
-        .sidebar a:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .main-content {
-            margin-left: 220px;
-            padding: 20px;
-        }
-
-        /* Top Navbar */
-        .top-navbar {
-            position: fixed;
-            top: 0;
-            left: 220px;
-            right: 0;
-            height: 60px;
-            background: #1d3557;
-            color: white;
-            display: flex;
-            align-items: center;
-            padding: 0 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            z-index: 999;
-        }
-
-        .top-navbar h5 {
-            margin: 0;
-            font-weight: 500;
-        }
-
-        .nav-icon {
-            margin-right: 10px;
-        }
-
-        .nav-link.active {
-            background: rgba(255, 255, 255, 0.15);
-            font-weight: bold;
-        }
-    </style>
-</head>
 <body>
+  {% block body %}
+        
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <a href="{% url 'dashboard' %}" class="nav-link"><i class="fas fa-robot nav-icon"></i> Dashboard</a>
-        <a href="{% url 'swot' %}" class="nav-link"><i class="fas fa-lightbulb nav-icon"></i> SWOT</a>
-        <a href="{% url 'feasibility' %}" class="nav-link"><i class="fas fa-rocket nav-icon"></i> Feasibility</a>
-        <a href="{% url 'risk' %}" class="nav-link"><i class="fas fa-exclamation-triangle nav-icon"></i> Risk</a>
+<body>
+    <div class="container">
+        <div class="header fade-in">
+            <div class="header-content">
+                <h1>SWOT Analysis Dashboard</h1>
+                <p>Strategic Business Intelligence & Planning</p>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Strengths</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Weaknesses</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Opportunities</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Threats</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="swot-grid">
+            <!-- Strengths Block -->
+            <div class="swot-quadrant strengths fade-in-delay">
+                <div class="quadrant-header">
+                    <div class="quadrant-icon">💪</div>
+                    <h2 class="quadrant-title">Strengths</h2>
+                    <div class="item-count">5 Items</div>
+                </div>
+                <ul class="item-list">
+                    <li class="item">
+                        <div class="item-content">
+                            <div class="item-text">Strong brand recognition and customer loyalty across multiple markets</div>
+                            <span class="item-priority high-priority">High</span>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <div class="item-content">
+                            <div class="item-text">Experienced and skilled workforce with industry expertise</div>
+                            <span class="item-priority high-priority">High</span>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <div class="item-content">
+                            <div class="item-text">Advanced technology infrastructure and digital capabilities</div>
+                            <span class="item-priority medium-priority">Medium</span>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <div class="item-content">
+                            <div class="item-text">Strong financial position with healthy cash flow</div>
+                            <span class="item-priority high-priority">High</span>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <div class="item-content">
+                            <div class="item-text">Diverse product portfolio reducing market risks</div>
+                            <span class="item-priority medium-priority">Medium</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Weaknesses Block -->
+            <div class="swot-quadrant weaknesses fade-in-delay">
+                <div class="quadrant-header">
+                    <div class="quadrant-icon">⚠</div>
+                    <h2 class="quadrant-title">Weaknesses</h2>
+                    <div class="item-count">5 Items</div>
+                </div>
+                <ul class="item-list">
+                    <li class="item">
+                        <div class="item-content">
+                            <div class="item-text">Limited market presence in emerging high-growth regions</div>
+                            <span class="item-priority high-priority">High</span>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <div class="item-content">
+                            <div class="item-text">Heavy dependence on key suppliers and vendors</div>
+                            <span class="item-priority medium-priority">Medium</span>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <div class="item-content">
+                            <div class="item-text">Slow decision-making processes affecting agility</div>
+                            <span class="item-priority medium-priority">Medium</span>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <div class="item-content">
+                            <div class="item-text">Aging infrastructure in some key facilities</div>
+                            <span class="item-priority low-priority">Low</span>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <div class="item-content">
+                            <div class="item-text">Limited digital marketing and social media presence</div>
+                            <span class="item-priority high-priority">High</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Opportunities Block -->
+            <div class="swot-quadrant opportunities fade-in-delay">
+                <div class="quadrant-header">
+                    <div class="quadrant-icon">🚀</div>
+                    <h2 class="quadrant-title">Opportunities</h2>
+                    <div class="item-count">5 Items</div>
+                </div>
+                <ul class="item-list">
+                    <li class="item">
+                        <div class="item-content">
+                            <div class="item-text">Rapidly growing demand in Asia-Pacific markets</div>
+                            <span class="item-priority high-priority">High</span>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <div class="item-content">
+                            <div class="item-text">Emerging sustainable technology trends and green initiatives</div>
+                            <span class="item-priority high-priority">High</span>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <div class="item-content">
+                            <div class="item-text">Strategic partnerships and strategic alliance opportunities</div>
+                            <span class="item-priority medium-priority">Medium</span>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <div class="item-content">
+                            <div class="item-text">Government incentives for innovation and R&D</div>
+                            <span class="item-priority medium-priority">Medium</span>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <div class="item-content">
+                            <div class="item-text">Digital transformation and automation opportunities</div>
+                            <span class="item-priority high-priority">High</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Threats Block -->
+            <div class="swot-quadrant threats fade-in-delay">
+                <div class="quadrant-header">
+                    <div class="quadrant-icon">⚡</div>
+                    <h2 class="quadrant-title">Threats</h2>
+                    <div class="item-count">5 Items</div>
+                </div>
+                <ul class="item-list">
+                    <li class="item">
+                        <div class="item-content">
+                            <div class="item-text">Increasing competition from agile new market entrants</div>
+                            <span class="item-priority high-priority">High</span>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <div class="item-content">
+                            <div class="item-text">Economic recession and global market volatility</div>
+                            <span class="item-priority high-priority">High</span>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <div class="item-content">
+                            <div class="item-text">Changing regulatory environment and compliance costs</div>
+                            <span class="item-priority medium-priority">Medium</span>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <div class="item-content">
+                            <div class="item-text">Cybersecurity risks and potential data breaches</div>
+                            <span class="item-priority high-priority">High</span>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <div class="item-content">
+                            <div class="item-text">Supply chain disruptions and logistics challenges</div>
+                            <span class="item-priority medium-priority">Medium</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer fade-in-delay">
+            <p class="footer-text">Analysis generated from comprehensive validation form data</p>
+            <p class="analysis-date">Last Updated: July 23, 2025</p>
+        </div>
     </div>
-
-    <!-- Top Navbar -->
-    <div class="top-navbar">
-        <h5><i class="fas fa-brain nav-icon"></i> ValidateAI Assistant</h5>
-    </div>
-
-    <!-- Main Content -->
-    <div class="main-content mt-5">
-        {% block content %}{% endblock %}
-    </div>
-
+    {% endblock %}
 </body>
 </html>
