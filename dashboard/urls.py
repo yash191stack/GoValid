@@ -11,4 +11,5 @@ urlpatterns = [
     path('risk/', views.risk, name='risk'),
     path("history/", views.history, name="history"),
     path('delete/<int:id>/', views.delete_submission, name='delete'),
+    path('update/<int:id>/', views.update_message, name='update'),
 ]
