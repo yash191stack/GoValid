@@ -105,18 +105,18 @@
                         <span>📈</span>
                         <span>Feasibility Scores</span>
                     </a>
-                    <a href="#" class="sidebar-item {% if request.resolver_match.Monetization == 'Monetization' %} active {% endif %}"">
+                    <a href="{% url 'dashboard:monetization' %}" class="sidebar-item {% if request.resolver_match.Monetization == 'Monetization' %} active {% endif %}"">
                         <span>💰</span>
                         <span>Monetization Analysis</span>
                     </a>
-                    <a href="#" class="sidebar-item">
+                    <a href="{% url 'dashboard:risk' %}" class="sidebar-item">
                         <span>⚠</span>
                         <span>Risk Assessment</span>
                     </a>
                 </div>
             </div>
 
-            <div class="sidebar-section">
+            <!-- <div class="sidebar-section">
                 <h3 class="sidebar-title">Reports & Insights</h3>
                 <div>
                     <a href="#" class="sidebar-item">
@@ -154,7 +154,7 @@
                         <span>👥</span>
                         <span>Community Forum</span>
                     </a>
-                </div>
+                </div> -->
             
         </aside>
         {% block body %}

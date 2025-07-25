@@ -2,29 +2,22 @@
 {% load static %}
 
 {% block head %}
-    <link rel="stylesheet" href="{% static 'css/monetization.css' %}">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/monetization.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
- 
-<body>
+<div class="container">
+  <div class="heading-section">
+    <h1>Monetization Dashboard</h1>
+    <p>Revenue Strategies & Financial Planning</p>
+  </div>
 
-  <div class="container">
-    <div class="heading-section">
-      <h1>Monetization Dashboard</h1>
-      <p>Revenue Strategies & Financial Planning</p>
-    </div>
-
-    <div class="data-box">
-      <h2>Revenue Model Analysis</h2>
-      <div class="placeholder">
-          {{ monetization_html|safe }}
-      </div>
+  <div class="data-box">
+    <h2>Revenue Model Analysis</h2>
+    <div class="placeholder">
+      {{ monetization_html|safe }}
     </div>
   </div>
+</div>
 {% endblock %}
-</body>
-</html>
-<p>{{ request.resolver_match.url_name }}</p>
-

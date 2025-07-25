@@ -391,6 +391,45 @@ Keep tone professional and concise. Just output clean HTML for these 3 boxes.
 
     return render(request, "dashboard/monetization.html", {"monetization_html": monetization_html})
 
+@login_required
+def risk(request):
+    startup_data = request.session.get("startup_data")
+
+    if not startup_data:
+        return redirect("dashboard:dashboard")
+
+    idea = startup_data.get('startup_idea', '')
+    domain = startup_data.get('business_domain', '')
+    problem = startup_data.get('problem_statement', '')
+    goal = startup_data.get('business_goal', '')
+    monetization = startup_data.get('monetization_strategy', '')
+    impact = startup_data.get('social_impact', '')
+    timeline = startup_data.get('timeline', '')
+
+    prompt = f"""
+IMPORTANT: Output only clean HTML. No markdown.
+
+Startup Details:
+Idea: {idea}
+Domain: {domain}
+Problem: {problem}
+Goal: {goal}
+Monetization: {monetization}
+Impact: {impact}
+Timeline: {timeline}
+
+FORMAT:
+<div class="risk-item">
+  <h3>🔹 Financial Risk – HIGH 🔴</h3>
+  <p>Reasoning text...</p>
+</div>
+Repeat for: Technical Risk, Market Risk, Operational Risk.
+Wrap all in one div class="risk-wrapper".
+"""
+
+    raw_html = generate_response(prompt)
+
+    return render(request, "dashboard/risk.html", {"risk_html": raw_html})
 
 
 
