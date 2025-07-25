@@ -101,14 +101,24 @@
                         <span>SWOT Analysis</span>
                         <span class="sidebar-badge">AI</span>
                     </a>
-                    <a href="#" class="sidebar-item {% if request.resolver_match.feasibility == 'feasibility' %} active {% endif %}">
+                    <a href="{% url 'dashboard:feasibility' %}" 
+                        class="sidebar-item {% if request.resolver_match.url_name == 'feasibility' %} active {% endif %}">
                         <span>📈</span>
                         <span>Feasibility Scores</span>
                     </a>
-                    <a href="#" class="sidebar-item {% if request.resolver_match.Monetization == 'Monetization' %} active {% endif %}"">
+
+                    <a href="{% url 'dashboard:monetization' %}" 
+                        class="sidebar-item {% if request.resolver_match.url_name == 'monetization' %} active {% endif %}">
                         <span>💰</span>
                         <span>Monetization Analysis</span>
                     </a>
+                    <a href="{% url 'dashboard:monetization' %}" 
+                        class="sidebar-item {% if request.resolver_match.url_name == 'monetization' %} active {% endif %}">
+                        <span>💰</span>
+                        <span>Monetization Analysis</span>
+                    </a>
+
+
                     <a href="#" class="sidebar-item">
                         <span>⚠</span>
                         <span>Risk Assessment</span>

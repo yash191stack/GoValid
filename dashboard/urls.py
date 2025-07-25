@@ -11,7 +11,9 @@ urlpatterns = [
     path('risk/', views.risk, name='risk'),
     path("history/", views.history, name="history"),
     path('delete/<int:id>/', views.delete_submission, name='delete'),
-    path("ai_sugg/", views.ai_sugg, name="ai_sugg"),
+    # path("ai_sugg/", views.ai_sugg, name="ai_sugg"),
     path("guide/", views.guide, name="guide"),
     path('update/<int:id>/', views.update_message, name='update'),
+    path('monetization/', views.monetization, name='monetization'),
+
 ]

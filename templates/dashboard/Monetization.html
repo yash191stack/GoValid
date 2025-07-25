@@ -1,158 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Monetization Analyzer</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #1f4037, #99f2c8);
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 40px 20px;
-    }
+{% extends 'base_dash.html' %}
+{% load static %}
 
-    .analyzer {
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 20px;
-      padding: 30px;
-      max-width: 600px;
-      width: 100%;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(10px);
-    }
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/monetization.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+{% endblock %}
 
-    h2 {
-      text-align: center;
-      margin-bottom: 25px;
-      color: #ffe600;
-    }
-
-    label {
-      display: block;
-      margin-top: 15px;
-      font-weight: bold;
-    }
-
-    input, select, button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 5px;
-      border: none;
-      border-radius: 10px;
-      font-size: 16px;
-    }
-
-    button {
-      background-color: #ffe600;
-      color: #000;
-      margin-top: 20px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    button:hover {
-      background-color: #ffd000;
-    }
-
-    .result {
-      margin-top: 30px;
-    }
-
-    .result-card {
-      background: rgba(255, 255, 255, 0.12);
-      border-radius: 15px;
-      padding: 15px;
-      margin-bottom: 15px;
-    }
-
-    .result-card h3 {
-      margin-top: 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .tag {
-      padding: 5px 10px;
-      border-radius: 15px;
-      font-size: 12px;
-      color: #fff;
-    }
-
-    .high { background-color: #2ecc71; }  /* Green */
-    .medium { background-color: #f1c40f; } /* Yellow */
-    .low { background-color: #e74c3c; }    /* Red */
-  </style>
-</head>
+{% block body %}
+ 
 <body>
-  <div class="analyzer">
-    <h2>Monetization Analyzer 💸</h2>
 
-    <label for="model">Pricing Model</label>
-    <select id="model">
-      <option>Freemium</option>
-      <option>Subscription</option>
-      <option>One-Time Purchase</option>
-      <option>Ads Based</option>
-    </select>
+  <div class="container">
+    <div class="heading-section">
+      <h1>Monetization Dashboard</h1>
+      <p>Revenue Strategies & Financial Planning</p>
+    </div>
 
-    <label for="users">Expected Monthly Users</label>
-    <input type="number" id="users" placeholder="e.g., 10000">
-
-    <label for="arpu">Average Revenue Per User (ARPU in $)</label>
-    <input type="number" id="arpu" placeholder="e.g., 5">
-
-    <button onclick="analyze()">Analyze 🚀</button>
-
-    <div class="result" id="result" style="display:none;">
-      <div class="result-card">
-        <h3>Revenue Potential <span id="revenueTag" class="tag"></span></h3>
-        <p>Monthly Revenue: <b id="monthlyRev"></b><br>Yearly Revenue: <b id="yearlyRev"></b></p>
-      </div>
-      <div class="result-card">
-        <h3>Recommended Model <span class="tag medium">💡</span></h3>
-        <p id="recommendation"></p>
-      </div>
-      <div class="result-card">
-        <h3>Scalability <span class="tag high">📈</span></h3>
-        <p>Your monetization strategy has high scalability with growing user base.</p>
+    <div class="data-box">
+      <h2>Revenue Model Analysis</h2>
+      <div class="placeholder">
+          {{ monetization_html|safe }}
       </div>
     </div>
   </div>
-
-  <script>
-    function analyze() {
-      const users = parseInt(document.getElementById('users').value);
-      const arpu = parseFloat(document.getElementById('arpu').value);
-      const monthlyRevenue = users * arpu;
-      const yearlyRevenue = monthlyRevenue * 12;
-
-      document.getElementById('monthlyRev').innerText = `$${monthlyRevenue.toLocaleString()}`;
-      document.getElementById('yearlyRev').innerText = `$${yearlyRevenue.toLocaleString()}`;
-
-      let tag = document.getElementById('revenueTag');
-      if (yearlyRevenue >= 500000) {
-        tag.innerText = 'HIGH 🟢';
-        tag.className = 'tag high';
-      } else if (yearlyRevenue >= 100000) {
-        tag.innerText = 'MEDIUM 🟡';
-        tag.className = 'tag medium';
-      } else {
-        tag.innerText = 'LOW 🔴';
-        tag.className = 'tag low';
-      }
-
-      const model = document.getElementById('model').value;
-      document.getElementById('recommendation').innerText = 
-        `The ${model} model is suitable based on your audience and ARPU. Consider optimizing for user retention.`;
-
-      document.getElementById('result').style.display = 'block';
-    }
-  </script>
+{% endblock %}
 </body>
 </html>
+<p>{{ request.resolver_match.url_name }}</p>
+
