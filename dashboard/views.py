@@ -4,6 +4,9 @@ from .models import Validate_form
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 import requests
+from django.template.loader import render_to_string
+from django.http import HttpResponse
+from xhtml2pdf import pisa
 
 # API Key (ensure security in production)
 api_key = "AIzaSyCGqjrH4vDQVeKu_cepFVYxI5hy_rtJNQw"
@@ -20,6 +23,24 @@ def risk(request):
 
 def guide(request):
     return render(request, "dashboard/guide.html")
+# ======================================================Reports============================================================
+@login_required
+def download_report(request):
+    user_entries = Validate_form.objects.filter(user=request.user).order_by('-created_at')
+    
+    html = render_to_string('dashboard/pdf_template.html', {
+        'entries': user_entries,
+        'user': request.user
+    })
+
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="startup_journal.pdf"'
+
+    pisa_status = pisa.CreatePDF(html, dest=response)
+
+    if pisa_status.err:
+        return HttpResponse("PDF generation failed")
+    return response
 
 # =================== CRUD Operations ====================
 @login_required

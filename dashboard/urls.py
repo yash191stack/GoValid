@@ -15,5 +15,6 @@ urlpatterns = [
     path("guide/", views.guide, name="guide"),
     path('update/<int:id>/', views.update_message, name='update'),
     path('monetization/', views.monetization, name='monetization'),
+    path('download/', views.download_report, name='download_report'),
 
 ]

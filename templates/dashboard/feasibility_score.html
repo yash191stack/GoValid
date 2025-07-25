@@ -1,7 +1,14 @@
 {% extends 'base_dash.html' %}
 {% load static %}
+
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/feasibility_score.css' %}">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{% static 'css/feasibility_score.css' %}">
 {% endblock %}
 
 {% block body %}
@@ -48,4 +55,26 @@
         </table>
     </div>
 </div>
+
+<!-- Scripts -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Smooth fade-in animations
+        const cards = document.querySelectorAll('.card');
+        cards.forEach((card, index) => {
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0) scale(1)';
+            }, 200 + (index * 100));
+        });
+
+        const containers = document.querySelectorAll('.container, .table-container');
+        containers.forEach((container, index) => {
+            setTimeout(() => {
+                container.style.opacity = '1';
+                container.style.transform = 'translateY(0)';
+            }, index * 150);
+        });
+    });
+</script>
 {% endblock %}
