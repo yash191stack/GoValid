@@ -83,6 +83,14 @@
                 <a href="{% url 'accounts:logout' %}" class="logout-btn">Logout</a>
                 <div class="user-avatar">U</div>
             </div>
+            <div class="navbar-right">
+                <!-- Profile Icon in Navbar -->
+            <a href="{% url 'dashboard:profile' %}">
+                <img src="{% static 'img/icon.png' %}" class="nav-profile-icon" alt="Profile">
+            </a>
+
+            </div>
+
         </div>
     </nav>
 

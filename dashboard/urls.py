@@ -16,5 +16,6 @@ urlpatterns = [
     path('update/<int:id>/', views.update_message, name='update'),
     path('monetization/', views.monetization, name='monetization'),
     path('download/', views.download_report, name='download_report'),
+    path("profile/", views.profile_view, name="profile"),
 
 ]

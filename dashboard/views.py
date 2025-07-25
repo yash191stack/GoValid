@@ -43,6 +43,25 @@ def download_report(request):
         return HttpResponse("PDF generation failed")
     return response
 
+@login_required
+def profile_view(request):
+    user = request.user
+    submissions = Validate_form.objects.filter(user=user)
+    
+    context = {
+        "user": user,
+        "submission_count": submissions.count()
+    }
+    
+    return render(request, "dashboard/profile.html", context)
+
+
+
+
+
+    
+
+
 # =================== CRUD Operations ====================
 @login_required
 def dashboard(request):

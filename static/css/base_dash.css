@@ -342,3 +342,123 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.6);
         }
+        .profile-container {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+.profile-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+.btn-download, .btn-logout, .btn-change {
+    display: block;
+    margin: 0.5rem auto;
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    background: #4CAF50;
+    color: white;
+    text-decoration: none;
+}
+.btn-logout {
+    background: #f44336;
+}
+.btn-change {
+    background: #2196F3;
+}
+.profile-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.profile-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.profile-details p, .profile-project p {
+    margin: 8px 0;
+    font-size: 0.95rem;
+}
+
+.profile-footer {
+    margin-top: 20px;
+    text-align: center;
+}
+.nav-profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.profile-card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+}
+
+.profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.profile-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.profile-email, .profile-date {
+    font-size: 0.95rem;
+    margin: 5px 0;
+}
+
+.profile-stats {
+    margin-top: 20px;
+    font-size: 1.1rem;
+}
+
+.profile-footer {
+    margin-top: 30px;
+    font-style: italic;
+    color: #555;
+}
