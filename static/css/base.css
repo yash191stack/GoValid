@@ -155,10 +155,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            animation: rotate3d 4s ease-in-out infinite;
+            /* animation: rotate3d 4s ease-in-out infinite; */
         }
 
-        @keyframes rotate3d {
+        /* @keyframes rotate3d {
 
             0%,
             100% {
@@ -175,8 +175,8 @@
 
             75% {
                 transform: rotateY(0deg) rotateX(90deg);
-            }
-        }
+            } */
+        /* } */
 
         .nav-links {
             display: flex;
@@ -265,6 +265,7 @@
             box-shadow: 0 8px 20px rgba(118, 75, 162, 0.4);
             cursor: pointer;
             transition: all 0.3s ease;
+            text-decoration: none;
         }
 
         .register-btn:hover {
@@ -272,9 +273,11 @@
             box-shadow: 0 12px 24px rgba(118, 75, 162, 0.6);
             background: linear-gradient(135deg, #f093fb, #f5576c);
             /* Pink gradient on hover */
+            text-decoration: none;
         }
 
         .register-btn:active {
             transform: translateY(0);
             box-shadow: 0 4px 12px rgba(118, 75, 162, 0.3);
+            text-decoration: none;
         }
