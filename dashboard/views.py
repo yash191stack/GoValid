@@ -11,6 +11,7 @@ from xhtml2pdf import pisa
 # API Key (ensure security in production)
 api_key = "AIzaSyCGqjrH4vDQVeKu_cepFVYxI5hy_rtJNQw"
 
+
 # ====================== PAGES ======================
 def swot(request):
     return render(request, "dashboard/swot.html")
@@ -159,7 +160,7 @@ def dashboard(request):
 
 def generate_response(prompt):
     api = "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=AIzaSyCGqjrH4vDQVeKu_cepFVYxI5hy_rtJNQw"
-
+        
     payload = {
         "contents": [{"parts": [{"text": prompt}]}]
     }
@@ -261,6 +262,11 @@ Now generate only the HTML.
         swot_text = swot_text.replace("```html", "").strip()
     if swot_text.endswith("```"):
         swot_text = swot_text.rsplit("```", 1)[0].strip()
+        # Save SWOT to latest entry
+    latest_entry = Validate_form.objects.filter(user=request.user).order_by('-created_at').first()
+    if latest_entry:
+        latest_entry.swot_analysis = swot_text
+        latest_entry.save()
 
     return render(request, "dashboard/swot.html", {"swot_raw": swot_text})
 
@@ -349,6 +355,14 @@ JSON FORMAT:
             "technical_feasibility": {"level": "N/A", "emoji": "⚠️", "text": "No data"},
             "financial_feasibility": {"level": "N/A", "emoji": "⚠️", "text": "No data"},
         }
+        # Get the latest entry for the user (or fetch using ID/session for more accuracy)
+        latest_entry = Validate_form.objects.filter(user=request.user).order_by('-created_at').first()
+        if latest_entry:
+            latest_entry.feasibility_score = data.get('score')
+            latest_entry.feasibility_level = data.get('level')
+            latest_entry.feasibility_comment = data.get('summary')
+            latest_entry.save()
+
 
     return render(request, "dashboard/feasibility_score.html", {"data": data})
 
@@ -409,6 +423,10 @@ Keep tone professional and concise. Just output clean HTML for these 3 boxes.
         monetization_html = monetization_html.replace("```html", "").strip()
     if monetization_html.endswith("```"):
         monetization_html = monetization_html.rsplit("```", 1)[0].strip()
+    latest_entry = Validate_form.objects.filter(user=request.user).order_by('-created_at').first()
+    if latest_entry:
+        latest_entry.monetization_suggestion = monetization_html
+    latest_entry.save()
 
     return render(request, "dashboard/monetization.html", {"monetization_html": monetization_html})
 
@@ -449,56 +467,13 @@ Wrap all in one div class="risk-wrapper".
 """
 
     raw_html = generate_response(prompt)
+    latest_entry = Validate_form.objects.filter(user=request.user).order_by('-created_at').first()
+    if latest_entry:
+        latest_entry.risk_score = "N/A"  # or parse from AI if needed
+        latest_entry.risk_comment = raw_html  # saving HTML for now
+        latest_entry.save()
 
     return render(request, "dashboard/risk.html", {"risk_html": raw_html})
 
 
 
-#  # ========================================================= CORRECT API for SWOT =======================================================================
-# def generate_response(prompt):
-#     api = "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=AIzaSyCGqjrH4vDQVeKu_cepFVYxI5hy_rtJNQw"
-
-#     payload = {
-#         "contents": [{"parts": [{"text": prompt}]}]
-#     }
-
-#     headers = {
-#         "Content-Type": "application/json"
-#     }
-
-#     try:
-#         response = requests.post(api, json=payload, headers=headers, timeout=10)
-#         response.raise_for_status()  # Raises HTTPError for bad response
-
-#         result = response.json()
-
-#         # Debug log (remove later)
-#         print("AI Response:", result)
-
-#         # Validate structure before accessing
-#         candidates = result.get("candidates")
-#         if not candidates or not isinstance(candidates, list):
-#             return "⚠️ Error: No valid candidates in AI response."
-
-#         parts = candidates[0].get("content", {}).get("parts")
-#         if not parts or not isinstance(parts, list):
-#             return "⚠️ Error: No valid parts in AI response."
-
-#         swot_text = parts[0].get("text")
-#         if not swot_text:
-#             return "⚠️ Error: AI response was empty."
-
-#         return swot_text.strip()
-
-    
-
-#     except Exception as e:
-#         print("Unexpected error:", e)
-#         return f"⚠️ Unexpected Error: {str(e)}"
-#     except requests.exceptions.RequestException as e:
-#         print("Network/API error:", e)
-#     if response.status_code == 429:
-#         return "⚠️ API Limit Reached: Too many requests. Please wait and try again."
-#     return f"⚠️ API Error: {str(e)}"
-#     print("API RESPONSE STATUS:", response.status_code)
-#     print("API RAW RESPONSE:", response.text)

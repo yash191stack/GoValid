@@ -29,3 +29,14 @@ class Validate_form(models.Model):
     monetization_strategy = models.TextField()
     social_impact = models.TextField()
     timeline = models.TextField()
+
+    feasibility_score = models.CharField(max_length=50, null=True, blank=True)
+    feasibility_comment = models.TextField(null=True, blank=True)
+    feasibility_level = models.CharField(max_length=50, null=True, blank=True)
+    swot_analysis = models.TextField(null=True, blank=True)
+    risk_score = models.CharField(max_length=50, null=True, blank=True)
+    risk_comment = models.TextField(null=True, blank=True)
+
+    monetization_suggestion = models.TextField(null=True, blank=True)
+
+

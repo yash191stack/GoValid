@@ -9,6 +9,10 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             min-height: 100vh;
             overflow-x: hidden;
+            background-image: url("../img/notebook.jpg") ;
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
         }
 
         /* Floating Particles Animation */
