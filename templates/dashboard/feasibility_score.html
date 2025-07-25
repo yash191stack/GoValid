@@ -1,0 +1,77 @@
+{% extends 'base_dash.html' %}
+{% load static %}
+{% block head %}
+
+<link rel="stylesheet" href="{% static 'css/feasibility_score.css' %}">
+{% endblock %}
+
+
+{% block body %}
+<body>
+    <div class="wrapper">
+        <!-- Main Feasibility Box -->
+        <div class="container">
+            <div class="score-wrapper">
+                <div class="score-value">82/100</div>
+                <div class="score-label">Feasibility Score: HIGH 🟢</div>
+                <p>This feasibility score reflects a detailed analysis of market readiness, competition, technical
+                    challenges, and financial viability. A score of 82 indicates strong potential with some areas
+                    needing close monitoring for sustainable growth.</p>
+            </div>
+
+            <div class="cards">
+                <div class="card">
+                    <h3>Market Demand <span class="tag high">HIGH 🟢</span></h3>
+                    <p>The market is highly receptive with growing demand, offering a solid customer base and potential
+                        for rapid adoption.</p>
+                </div>
+                <div class="card">
+                    <h3>Competition <span class="tag medium">MEDIUM 🟡</span></h3>
+                    <p>Moderate competition exists; differentiating factors and innovation are necessary to stay ahead.
+                    </p>
+                </div>
+                <div class="card">
+                    <h3>Technical Feasibility <span class="tag high">HIGH 🟢</span></h3>
+                    <p>Technology requirements are well within reach with minimal risk of delays or cost overruns.</p>
+                </div>
+                <div class="card">
+                    <h3>Financial Feasibility <span class="tag low">LOW 🔴</span></h3>
+                    <p>Financial risks are present; a detailed funding strategy is needed to ensure sustainability.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <h3>Score Ranges</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Range</th>
+                        <th>Label</th>
+                        <th>Emoji</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>80 – 100</td>
+                        <td><span class="table-tag high-tag">HIGH</span></td>
+                        <td>🟢 Excellent potential</td>
+                    </tr>
+                    <tr>
+                        <td>50 – 79</td>
+                        <td><span class="table-tag medium-tag">MEDIUM</span></td>
+                        <td>🟡 Needs improvement</td>
+                    </tr>
+                    <tr>
+                        <td>0 – 49</td>
+                        <td><span class="table-tag low-tag">LOW</span></td>
+                        <td>🔴 High risk</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+     {% endblock %}
+</body>
+
+</html>
