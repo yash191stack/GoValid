@@ -11,46 +11,44 @@
         }
 
         .hero-content {
-            max-width: 1200px;
-            padding: 0 20px;
-            z-index: 2;
-        }
+    max-width: 1200px;
+    padding: 0 20px;
+    z-index: 2;
+    text-align: center;
+    margin: 0 auto;
+    
+}
 
-        .hero-title {
-            margin-top: 150px;
-            font-size: clamp(3rem, 8vw, 7rem);
-            font-weight: 600;
-            background: linear-gradient(45deg, black);
-            background-size: 400% 400%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: textShine 3s ease-in-out infinite;
-            margin-bottom: 20px;
-            line-height: 1.1;
-            font-family: 'Space Grotesk', sans-serif;
-        }
+.hero-title {
+    margin-top: 150px;
+    font-size: clamp(3rem, 8vw, 6rem); /* Responsive size */
+    font-weight: 900; /* Super bold */
+    color: #000; /* Pure black */
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.2); /* Light pop effect */
+    margin-bottom: 20px;
+    line-height: 1.1;
+    font-family: 'Space Grotesk', sans-serif;
+}
+       @keyframes textShine {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
 
-        @keyframes textShine {
-
-            0%,
-            100% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1.2rem, 3vw, 2rem);
-            color:rgb(0, 0, 0);
-            margin-bottom: 40px;
-            font-weight: 400;
-            line-height: 1.6;
-        }
-
+      .hero-subtitle {
+    font-size: clamp(1.2rem, 3vw, 1.8rem); /* Responsive */
+    font-weight: 500;
+    color: #222; /* Dark grey for contrast */
+    margin-bottom: 40px;
+    font-family: 'Poppins', sans-serif;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.1); /* Light pop */
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
         .hero-buttons {
             display: flex;
             gap: 20px;
