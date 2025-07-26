@@ -102,6 +102,38 @@ body {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
+.card:nth-child(1) {
+    background-image: 
+        linear-gradient(#e2e8f0 1px, transparent 1px),
+        radial-gradient(circle at 20% 30%, rgba(16,185,129,0.08) 0%, transparent 50%),
+        repeating-linear-gradient(45deg, rgba(16,185,129,0.04) 0px, transparent 8px);
+    background-size: 100% 24px, 80px 80px, 12px 12px;
+}
+
+.card:nth-child(2) {
+    background-image: 
+        linear-gradient(#e2e8f0 1px, transparent 1px),
+        radial-gradient(circle at 80% 20%, rgba(239,68,68,0.08) 0%, transparent 50%),
+        repeating-linear-gradient(-45deg, rgba(239,68,68,0.04) 0px, transparent 10px);
+    background-size: 100% 24px, 90px 90px, 15px 15px;
+}
+
+.card:nth-child(3) {
+    background-image: 
+        linear-gradient(#e2e8f0 1px, transparent 1px),
+        radial-gradient(circle at 30% 80%, rgba(59,130,246,0.08) 0%, transparent 50%),
+        repeating-linear-gradient(90deg, rgba(59,130,246,0.04) 0px, transparent 6px);
+    background-size: 100% 24px, 100px 100px, 10px 10px;
+}
+
+.card:nth-child(4) {
+    background-image: 
+        linear-gradient(#e2e8f0 1px, transparent 1px),
+        radial-gradient(circle at 70% 70%, rgba(245,158,11,0.08) 0%, transparent 50%),
+        repeating-linear-gradient(135deg, rgba(245,158,11,0.04) 0px, transparent 12px);
+    background-size: 100% 24px, 85px 85px, 18px 18px;
+}
+
 .card:hover {
     transform: translateY(-4px) scale(1);
     box-shadow: 
@@ -274,47 +306,47 @@ tbody tr:hover {
         flex-direction: column;
         padding: 1rem;
     }
-    
+
     .container,
     .table-container {
         flex: 1 1 100%;
         margin: 0;
         margin-bottom: 1rem;
     }
-    
+
     .score-value {
         font-size: 3rem;
     }
-    
+
     .score-label {
         font-size: 1.2rem;
     }
-    
+
     .card {
         padding: 1.25rem;
     }
-    
+
     .card h3 {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.5rem;
     }
-    
+
     table {
         margin-left: 0.5rem;
         max-width: calc(100% - 0.5rem);
     }
-    
+
     .container::before,
     .table-container::before {
         left: 1rem;
     }
-    
+
     .score-wrapper,
     .cards {
         margin-left: 0.5rem;
     }
-    
+
     .table-container h3 {
         margin-left: 0.5rem;
     }
@@ -324,24 +356,24 @@ tbody tr:hover {
     .wrapper {
         padding: 0.5rem;
     }
-    
+
     .container,
     .table-container {
         padding: 1rem;
     }
-    
+
     .score-value {
         font-size: 2.5rem;
     }
-    
+
     .score-label {
         font-size: 1rem;
     }
-    
+
     .card {
         padding: 1rem;
     }
-    
+
     th,
     td {
         padding: 0.5rem;

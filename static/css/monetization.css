@@ -1,4 +1,4 @@
-/* Clean Notebook Style Monetization Dashboard */
+/* Clean Monetization Dashboard - Pattern Style */
 
 * {
     margin: 0;
@@ -8,14 +8,14 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background: url('{% static "img/notebook.jpg" %}') center/cover no-repeat;
+    background: url("../img/notebook.jpg");
     background-attachment: fixed;
     min-height: 100vh;
     color: #334155;
     line-height: 1.6;
-    background-image: url("../img/notebook.jpg") ;
 }
 
+/* Main Container */
 .container {
     width: 90%;
     max-width: 1400px;
@@ -23,32 +23,32 @@ body {
     padding: 2rem;
 }
 
+/* Heading Section */
 .heading-section {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(226, 232, 240, 0.5);
+    /* background: linear-gradient(135deg, #f0f9ff 0%, #ecfeff 50%, #fefce8 100%); */
+    /* backdrop-filter: blur(10px); */
+    /* border: 1px solid rgba(226, 232, 240, 0.5); */
     padding: 3rem 2rem;
     border-radius: 16px;
     text-align: center;
-    box-shadow: 
-        0 1px 3px rgba(0, 0, 0, 0.05),
-        0 1px 2px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.08),
+        0 4px 10px rgba(0, 0, 0, 0.05); */
     margin-bottom: 2rem;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     opacity: 0;
     transform: translateY(-20px);
     position: relative;
+    background: #ffffff;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(226, 232, 240, 0.6);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
 }
 
+
+
 .heading-section::before {
-    content: '';
-    position: absolute;
-    left: 2rem;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: linear-gradient(to bottom, #8b5cf6 0%, #3b82f6 50%, #10b981 100%);
-    border-radius: 2px;
+    content: none;
 }
 
 .heading-section:hover {
@@ -78,19 +78,16 @@ body {
     font-weight: 400;
 }
 
+/* Data Box with Pattern */
 .data-box {
-    background-color: #fdfdfd;
-    background-image: 
-        linear-gradient(#e2e8f0 1px, transparent 1px),
-        radial-gradient(circle at 15% 25%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
-        radial-gradient(circle at 85% 75%, rgba(16, 185, 129, 0.03) 0%, transparent 50%);
-    background-size: 100% 24px, 200px 200px, 150px 150px;
+    background: linear-gradient(135deg, #f0f9ff 0%, #ecfeff 50%, #fefce8 100%);
+    background-size: cover;
+    background-blend-mode: overlay;
     border: 1px solid #cbd5e1;
-    border-left: 4px solid #3b82f6;
     padding: 2.5rem;
     border-radius: 16px;
     box-shadow: 
-        0 10px 25px rgba(0, 0, 0, 0.15),
+        0 10px 25px rgba(0, 0, 0, 0.1),
         0 4px 10px rgba(0, 0, 0, 0.05);
     position: relative;
     opacity: 0;
@@ -98,28 +95,11 @@ body {
     transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Red margin line */
+/* Remove side line */
 .data-box::before {
-    content: '';
-    position: absolute;
-    left: 3rem;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: #fca5a5;
-    opacity: 0.6;
+    content: none;
 }
 
-.data-box::before {
-    content: '';
-    position: absolute;
-    left: 3rem;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: #fca5a5;
-    opacity: 0.6;
-}
 
 .data-box h2 {
     font-size: 1.5rem;
@@ -129,52 +109,30 @@ body {
     font-weight: 600;
     margin-left: 1rem;
 }
+.heading-section::before,
+.data-box::before {
+    background: transparent !important;
+    width: 0 !important;
+}
 
+/* Placeholder - Transparent Clean Look */
 .placeholder {
-    font-size: 1rem;
-    color: #475569;
-    line-height: 1.7;
-    text-align: left;
-    padding: 2rem;
-    border: 2px dashed #cbd5e1;
-    border-radius: 12px;
-    background: rgba(248, 250, 252, 0.8);
-    backdrop-filter: blur(5px);
-    margin-left: 1rem;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    
-    line-height: 24px;
-    padding: 20px 20px 20px 2rem;
     background: transparent;
     border: none;
-
+    padding: 0;
+    margin: 0;
+    color: #334155;
+    line-height: 1.6;
+    background: linear-gradient(135deg, #f0f9ff 0%, #ecfeff 50%, #fefce8 100%);
+    background-size: cover;
+    background-blend-mode: overlay;
+    border-radius: 16px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    border: none;
+    
 }
 
-.placeholder::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.05), transparent);
-    transition: left 0.6s ease;
-}
-
-.placeholder:hover::before {
-    left: 100%;
-}
-
-.placeholder:hover {
-    background: rgba(255, 255, 255, 0.9);
-    border-color: #94a3b8;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-}
-
-/* If monetization content has specific styling needs */
 .placeholder h3 {
     color: #1e293b;
     font-weight: 600;
@@ -232,35 +190,30 @@ body {
         margin: 1rem auto;
         width: 95%;
     }
-    
+
     .heading-section {
         padding: 2rem 1.5rem;
         margin-bottom: 1.5rem;
     }
-    
+
     .heading-section::before,
     .data-box::before {
         left: 1.5rem;
     }
-    
+
     .heading-section h1 {
         margin-left: 0.5rem;
     }
-    
+
     .heading-section p {
         margin-left: 0.5rem;
     }
-    
+
     .data-box {
         padding: 2rem 1.5rem;
     }
-    
+
     .data-box h2 {
-        margin-left: 0.5rem;
-    }
-    
-    .placeholder {
-        padding: 1.5rem;
         margin-left: 0.5rem;
     }
 }
@@ -269,22 +222,21 @@ body {
     .container {
         padding: 0.5rem;
     }
-    
+
     .heading-section {
         padding: 1.5rem 1rem;
     }
-    
+
     .data-box {
         padding: 1.5rem 1rem;
     }
-    
+
     .placeholder {
-        padding: 1rem;
         font-size: 0.9rem;
     }
 }
 
-/* Clean scrollbar */
+/* Clean Scrollbar */
 ::-webkit-scrollbar {
     width: 6px;
 }
@@ -302,7 +254,7 @@ body {
     background: rgba(148, 163, 184, 0.8);
 }
 
-/* Performance optimizations */
+/* Performance Optimizations */
 .heading-section,
 .data-box,
 .placeholder {
