@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Validate_form
+
+admin.site.register(Validate_form)
+
+

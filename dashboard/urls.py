@@ -8,6 +8,7 @@ urlpatterns = [
     path("dashboard/", views.dashboard, name="dashboard"),
     path("swot/", views.swot, name="swot"),
     path('feasibility/', views.feasibility, name='feasibility'),
+    #  path('feasibility/', views.feasibility_score, name='feasibility'),
     path('risk/', views.risk, name='risk'),
     path("history/", views.history, name="history"),
     path('delete/<int:id>/', views.delete_submission, name='delete'),
@@ -19,6 +20,8 @@ urlpatterns = [
     path("profile/", views.profile_view, name="profile"),
     path('edit_profile/', views.edit_profile, name='edit_profile'),
     path('testimonials/', views.testimonials_view, name='testimonials'),
+     path('guide/', views.testimonials_view, name='guide'),
+
 
 
 ]
