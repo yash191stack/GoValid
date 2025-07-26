@@ -17,5 +17,7 @@ urlpatterns = [
     path('monetization/', views.monetization, name='monetization'),
     path('download/', views.download_report, name='download_report'),
     path("profile/", views.profile_view, name="profile"),
+    path('edit_profile/', views.edit_profile, name='edit_profile'),
+
 
 ]

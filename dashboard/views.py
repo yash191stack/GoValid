@@ -7,6 +7,12 @@ import requests
 from django.template.loader import render_to_string
 from django.http import HttpResponse
 from xhtml2pdf import pisa
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.pagesizes import A4
+
+from django.db.models import Avg
+from django.contrib.auth.models import User
 
 # API Key (ensure security in production)
 api_key = "AIzaSyCGqjrH4vDQVeKu_cepFVYxI5hy_rtJNQw"
@@ -27,33 +33,139 @@ def guide(request):
 # ======================================================Reports============================================================
 @login_required
 def download_report(request):
-    user_entries = Validate_form.objects.filter(user=request.user).order_by('-created_at')
-    
-    html = render_to_string('dashboard/pdf_template.html', {
-        'entries': user_entries,
-        'user': request.user
-    })
+    user = request.user
+    submissions = Validate_form.objects.filter(user=user)
 
     response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="startup_journal.pdf"'
+    response['Content-Disposition'] = 'attachment; filename="startup_report.pdf"'
 
-    pisa_status = pisa.CreatePDF(html, dest=response)
+    p = canvas.Canvas(response, pagesize=A4)
+    width, height = A4
+    y = height - 60
 
-    if pisa_status.err:
-        return HttpResponse("PDF generation failed")
+    # Header
+    p.setFont("Helvetica-Bold", 16)
+    p.drawString(50, y, f"Startup Idea Report for {user.username}")
+    y -= 30
+
+    p.setFont("Helvetica", 12)
+    p.drawString(50, y, f"Email: {user.email}")
+    y -= 20
+    p.drawString(50, y, f"Total Submissions: {submissions.count()}")
+    y -= 30
+
+    if not submissions:
+        p.drawString(50, y, "No submissions found.")
+    else:
+        for i, submission in enumerate(submissions, 1):
+            if y < 200:
+                p.showPage()
+                y = height - 60
+
+            # Entry number
+            p.setFont("Helvetica-Bold", 14)
+            p.drawString(50, y, f"Entry {i}")
+            y -= 20
+
+            p.setFont("Helvetica", 12)
+            p.drawString(60, y, f"Startup Idea: {submission.startup_idea}")
+            y -= 20
+            p.drawString(60, y, f"Business Domain: {submission.get_business_domain_display()}")
+            y -= 20
+            p.drawString(60, y, f"Problem Statement: {submission.problem_statement}")
+            y -= 20
+            p.drawString(60, y, f"Business Goal: {submission.business_goal}")
+            y -= 20
+            p.drawString(60, y, f"Monetization Strategy: {submission.monetization_strategy}")
+            y -= 20
+            p.drawString(60, y, f"Social Impact: {submission.social_impact}")
+            y -= 20
+            p.drawString(60, y, f"Timeline: {submission.timeline}")
+            y -= 20
+
+            # 🔍 AI Analysis Section
+            p.setFont("Helvetica-Bold", 12)
+            p.drawString(60, y, "AI Analysis:")
+            y -= 20
+            p.setFont("Helvetica", 12)
+            p.drawString(70, y, f"Feasibility Level: {submission.feasibility_level}")
+            y -= 20
+            p.drawString(70, y, f"Feasibility Score: {submission.feasibility_score}")
+            y -= 20
+
+            used_tip = "Yes" if submission.monetization_suggestion else "No"
+            p.drawString(70, y, f"Monetization Tips Used: {used_tip}")
+            y -= 20
+
+            feedback = submission.feasibility_comment if submission.feasibility_comment else "No feedback"
+            p.drawString(70, y, f"Feedback: {feedback}")
+            y -= 30
+
+            # Separator Line
+            p.setStrokeColorRGB(0.6, 0.6, 0.6)
+            p.setLineWidth(0.5)
+            p.line(50, y, width - 50, y)
+            y -= 30
+
+    p.save()
     return response
 
 @login_required
 def profile_view(request):
     user = request.user
     submissions = Validate_form.objects.filter(user=user)
-    
+    validated_count = submissions.filter(feasibility_level="High").count()
+    avg_score = submissions.aggregate(Avg('feasibility_score'))['feasibility_score__avg'] or 0
+    monetization_used = "Yes" if submissions.filter(monetization_suggestion__isnull=False).exists() else "No"
+    feedback_received = submissions.filter(feasibility_comment__isnull=False).count()
+
     context = {
         "user": user,
-        "submission_count": submissions.count()
+        "submission_count": submissions.count(),
+        "validated_ideas": validated_count,
+        "avg_score": round(avg_score, 2),
+        "monetization_used": monetization_used,
+        "feedback_received": feedback_received,
+        "linkedin_url": "#",  # Replace dynamically if saved
+        "github_url": "#",
     }
-    
     return render(request, "dashboard/profile.html", context)
+
+@login_required
+def edit_profile(request):
+    user = request.user
+    error_message = None
+    success_message = None
+
+    if request.method == 'POST':
+        new_username = request.POST.get('username').strip()
+        new_email = request.POST.get('email').strip()
+        first_name = request.POST.get('first_name').strip()
+        last_name = request.POST.get('last_name').strip()
+
+        # Check for username conflict
+        if User.objects.exclude(id=user.id).filter(username=new_username).exists():
+            error_message = "⚠️ Username already taken by another user."
+        # Check for email conflict
+        elif User.objects.exclude(id=user.id).filter(email=new_email).exists():
+            error_message = "⚠️ Email already in use by another user."
+        else:
+            user.username = new_username
+            user.email = new_email
+            user.first_name = first_name
+            user.last_name = last_name
+            user.save()
+            success_message = "✅ Profile updated successfully!"
+
+    context = {
+        "user": user,
+        "error_message": error_message,
+        "success_message": success_message
+    }
+    return render(request, "dashboard/edit_profile.html", context)
+
+
+
 
 
 
