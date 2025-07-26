@@ -103,12 +103,13 @@
 
         /* Goals Section */
         .goals-section {
-            background: linear-gradient(135deg, #dbeafe, #e0e7ff);
-            border: 2px solid #bfdbfe;
-            border-radius: 24px;
-            padding: 32px;
-            position: relative;
-        }
+    background: linear-gradient(135deg, #f0f9ff, #f3f4f6); /* very light blue to soft grayish */
+    border: 2px solid #e0f2fe;
+    border-radius: 24px;
+    padding: 32px;
+    position: relative;
+}
+
 
         .goals-header {
             display: flex;
@@ -458,13 +459,13 @@
             font-style: italic;
         }
 
-        .goals-section {
+        /* .goals-section {
             background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
             border: 2px solid #bfdbfe;
             border-radius: 24px;
             padding: 32px;
             position: relative;
-        }
+        } */
 
         .goals-header {
             display: flex;
@@ -751,3 +752,17 @@
             float: right;
             margin-top: 20px;
         }
+        .center-container {
+    flex: 1; /* Takes remaining space */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: flex-start; /* From top, use center for full center */
+    padding: 2rem;
+  
+    overflow-y: auto; /* scroll if needed */
+}
+
+.main-content {
+    width: 100%;
+    max-width: 1000px; /* Controls form width */
+}
