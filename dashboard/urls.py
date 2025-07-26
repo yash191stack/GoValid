@@ -18,6 +18,7 @@ urlpatterns = [
     path('download/', views.download_report, name='download_report'),
     path("profile/", views.profile_view, name="profile"),
     path('edit_profile/', views.edit_profile, name='edit_profile'),
+    path('testimonials/', views.testimonials_view, name='testimonials'),
 
 
 ]

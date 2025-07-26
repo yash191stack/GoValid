@@ -10,7 +10,8 @@ from xhtml2pdf import pisa
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.pagesizes import A4
-
+from .models import Testimonial
+from .forms import TestimonialForm
 from django.db.models import Avg
 from django.contrib.auth.models import User
 
@@ -30,6 +31,19 @@ def risk(request):
 
 def guide(request):
     return render(request, "dashboard/guide.html")
+
+def testimonials_view(request):
+    testimonials = Testimonial.objects.all().order_by('-created_at')
+    form = TestimonialForm()
+
+    if request.method == 'POST':
+        form = TestimonialForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('dashboard:testimonials')  # Your URL name here
+
+    context = {'testimonials': testimonials, 'form': form}
+    return render(request, 'dashboard/testimonials.html', context)
 # ======================================================Reports============================================================
 @login_required
 def download_report(request):
