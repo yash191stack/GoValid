@@ -232,9 +232,17 @@
             box-shadow: 4px 0 6px rgba(0, 0, 0, 0.1);
             width: 320px;
             padding: 24px;
-            display: none;
+            display: block;
             flex-shrink: 0;
         }
+        .main-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;   /* ✅ horizontally center .container */
+    align-items: flex-start;   /* change to center for vertical centering */
+    padding: 2rem;
+}
+
 
         @media (min-width: 1024px) {
             .sidebar { display: block; }
