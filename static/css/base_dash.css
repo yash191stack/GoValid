@@ -9,7 +9,10 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             min-height: 100vh;
             overflow-x: hidden;
-            background-image: url("../img/notebook.jpg") ;
+            /* background-image: url("../img/notebook.jpg") ; */
+            background: url("https://images.unsplash.com/photo-1542281286-9e0a16bb7366?auto=format&fit=crop&w=1740&q=80") no-repeat center center fixed;
+            background-size: cover;
+            backdrop-filter: blur(4px);
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
