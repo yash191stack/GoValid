@@ -59,6 +59,8 @@
                     <a href="{% url 'dashboard:history' %}" class="sidebar-item {% if request.resolver_match.url_name == 'history' %} active {% endif %}">
                         <span>📁</span><span>My Ideas</span>
                     </a>
+                    <a href="{% url 'dashboard:market' %}" class="sidebar-item {% if request.resolver_match.market == 'market' %} active {% endif %}">
+                        <span>📊</span><span>Market Research</span>
                     <a href="{% url 'dashboard:download_report' %}" class="sidebar-item">
                         <span>⬇️</span><span>Download Report</span>
                     </a>

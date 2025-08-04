@@ -1,0 +1,129 @@
+   
+    {% extends 'base_dash.html' %} 
+{% load static %}  
+
+{% block head %} 
+ 
+ <title>Market Research - Startup Validator</title>
+    <link rel="stylesheet" href="{% static 'css/market.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"> 
+{% endblock %}  
+
+{% block body %} 
+</head>
+<body>
+    <div class="particles">
+        <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="particle" style="left: 20%; animation-delay: 1s;"></div>
+        <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
+        <div class="particle" style="left: 40%; animation-delay: 3s;"></div>
+        <div class="particle" style="left: 50%; animation-delay: 4s;"></div>
+        <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
+        <div class="particle" style="left: 70%; animation-delay: 0.5s;"></div>
+        <div class="particle" style="left: 80%; animation-delay: 1.5s;"></div>
+        <div class="particle" style="left: 90%; animation-delay: 2.5s;"></div>
+    </div>
+
+    <header class="header">
+        <nav class="nav container">
+            <div class="logo">StartupValidator</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Validate Your Startup Ideas with Data-Driven Market Research</h1>
+                    <p>Transform your business concepts into validated opportunities with comprehensive market analysis, competitor insights, and customer validation frameworks that drive real results.</p>
+                    <a href="#" class="cta-button">Start Your Research Journey</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Startups Validated</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">Accuracy Rate</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">72h</div>
+                        <div class="stat-label">Average Turnaround</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Industries Covered</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features" id="features">
+            <div class="container">
+                <h2 class="section-title">Comprehensive Market Research Solutions</h2>
+                <p class="section-subtitle">Unlock the power of data-driven insights to validate your startup ideas and accelerate your path to success</p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Market Size Analysis</h3>
+                        <p>Get detailed insights into your total addressable market (TAM), served addressable market (SAM), and serviceable obtainable market (SOM) with precise sizing, growth projections, and market dynamics analysis.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Competitor Intelligence</h3>
+                        <p>Comprehensive competitive landscape analysis including direct and indirect competitors, their strategies, pricing models, market positioning, and SWOT analysis to identify your unique value proposition.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💡</div>
+                        <h3>Customer Validation</h3>
+                        <p>Validate your target customer segments through surveys, interviews, behavioral analysis, and market testing to ensure strong product-market fit before significant investment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="process" id="process">
+            <div class="container">
+                <h2 class="section-title">Our Research Process</h2>
+                <p class="section-subtitle">A systematic approach to turning your ideas into validated business opportunities</p>
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <h4>Discovery & Strategy</h4>
+                        <p>We begin with an in-depth consultation to understand your business concept, target market, competitive landscape, and specific research objectives to create a tailored research strategy.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <h4>Data Collection & Research</h4>
+                        <p>Our expert team conducts comprehensive market research using multiple data sources, industry reports, primary research, surveys, and competitive analysis to gather relevant insights.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <h4>Analysis & Validation</h4>
+                        <p>We analyze collected data using advanced analytics tools to extract actionable insights, validate business assumptions, and identify market opportunities and potential challenges.</p>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <h4>Strategic Recommendations</h4>
+                        <p>Receive a comprehensive report with clear findings, strategic recommendations, market entry strategies, and actionable next steps to move your startup forward confidently.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+{% endblock %}
+            
