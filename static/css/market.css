@@ -161,10 +161,16 @@
             transform: translateY(-2px);
             box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
         }
-        nav ul li a {
+        /* nav ul li a {
     background: none !important;
     background-image: none !important;
-    color: #000 !important; /* Or your preferred color */
+    color: #000 !important; 
+    padding: 10px 15px;
+    display: inline-block;
+} */
+/* Agar zarurat ho to sirf itna likho */
+
+nav ul li a {
     padding: 10px 15px;
     display: inline-block;
 }
