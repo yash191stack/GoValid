@@ -35,8 +35,6 @@ def risk(request):
 def guide(request):
     return render(request, "dashboard/guide.html")
 
-def market_view(request):
-    return render(request, "dashboard/market.html")
 
 def testimonials_view(request):
     testimonials = Testimonial.objects.all().order_by('-created_at')
