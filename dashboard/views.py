@@ -338,7 +338,6 @@ def generate_response(prompt):
     except requests.exceptions.RequestException as e:
         print("Network/API error:", e)
     
-    # Handle 429 separately if response exists
         if hasattr(e, 'response') and e.response is not None:
             if e.response.status_code == 429:
                 return "⚠️ API Limit Reached: Too many requests."
