@@ -148,7 +148,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-8c(rs=6j(6%o5v8habw93893zy=ch193@-)dt2-t2ja-4e#96v'
 
 # ⚠️ Deployment: Debug ko False rakho (local testing ke liye True ho sakta hai)
-DEBUG = False
+DEBUG = True
 
 # PythonAnywhere ke domain aur localhost allow karo
 
