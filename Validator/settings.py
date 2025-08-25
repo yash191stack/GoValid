@@ -150,7 +150,7 @@ SECRET_KEY = 'django-insecure-8c(rs=6j(6%o5v8habw93893zy=ch193@-)dt2-t2ja-4e#96v
 DEBUG = False
 
 # PythonAnywhere ke domain aur localhost allow karo
-ALLOWED_HOSTS = ["govalid.onrender.com", "www.govalid.com", "localhost"]
+ALLOWED_HOSTS = ["*"]
 
 
 
