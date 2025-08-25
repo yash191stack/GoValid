@@ -150,7 +150,11 @@ SECRET_KEY = 'django-insecure-8c(rs=6j(6%o5v8habw93893zy=ch193@-)dt2-t2ja-4e#96v
 DEBUG = False
 
 # PythonAnywhere ke domain aur localhost allow karo
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    'govalid.onrender.com',
+    'localhost',
+    '127.0.0.1',
+]
 
 
 
@@ -248,3 +252,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "your_actual_api_key_here")
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
 
+if os.environ.get('RENDER'):
+    ALLOWED_HOSTS = ['govalid.onrender.com']
+else:
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1']
