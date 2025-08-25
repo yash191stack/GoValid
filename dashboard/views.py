@@ -572,7 +572,7 @@ Keep tone professional and concise. Just output clean HTML for these 3 boxes.
     latest_entry = Validate_form.objects.filter(user=request.user).order_by('-created_at').first()
     if latest_entry:
         latest_entry.monetization_suggestion = monetization_html
-    latest_entry.save()
+        latest_entry.save()
 
     return render(request, "dashboard/monetization.html", {"monetization_html": monetization_html})
 
