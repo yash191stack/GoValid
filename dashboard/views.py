@@ -524,7 +524,7 @@ def monetization(request):
     domain = startup_data.get('business_domain', '')
     problem = startup_data.get('problem_statement', '')
     goal = startup_data.get('business_goal', '')
-    monetization = startup_data.get('monetization_strategy', '')
+    monetization = startup_data.get('monetization_strategy', 'N/A')
     impact = startup_data.get('social_impact', '')
     timeline = startup_data.get('timeline', '')
 
