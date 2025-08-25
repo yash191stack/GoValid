@@ -511,71 +511,71 @@ JSON FORMAT:
 
     return render(request, "dashboard/feasibility_score.html", {"data": data})
 
-# @login_required
-# def monetization(request):
-#     startup_data = request.session.get("startup_data")
+@login_required
+def monetization(request):
+    startup_data = request.session.get("startup_data")
 
-#     if not startup_data:
-#         return redirect("dashboard:dashboard")
+    if not startup_data:
+        return redirect("dashboard:dashboard")
 
-#     # Extract startup details
-#     idea = startup_data.get('startup_idea', '')
-#     domain = startup_data.get('business_domain', '')
-#     problem = startup_data.get('problem_statement', '')
-#     goal = startup_data.get('business_goal', '')
-#     monetization = startup_data.get('monetization_strategy', 'N/A')
-#     impact = startup_data.get('social_impact', '')
-#     timeline = startup_data.get('timeline', '')
+    # Extract startup details
+    idea = startup_data.get('startup_idea', '')
+    domain = startup_data.get('business_domain', '')
+    problem = startup_data.get('problem_statement', '')
+    goal = startup_data.get('business_goal', '')
+    monetization = startup_data.get('monetization_strategy', 'N/A')
+    impact = startup_data.get('social_impact', '')
+    timeline = startup_data.get('timeline', '')
 
-#     # Prompt for AI
-#     prompt = f"""
-# IMPORTANT: Output ONLY HTML. No markdown. No ```html.
+    # Prompt for AI
+    prompt = f"""
+IMPORTANT: Output ONLY HTML. No markdown. No ```html.
 
-# Based on the startup info below, give a revenue model analysis with strategies.
+Based on the startup info below, give a revenue model analysis with strategies.
 
-# Startup Details:
-# Idea: {idea}
-# Domain: {domain}
-# Problem: {problem}
-# Goal: {goal}
-# Monetization Strategy: {monetization}
-# Impact: {impact}
-# Timeline: {timeline}
+Startup Details:
+Idea: {idea}
+Domain: {domain}
+Problem: {problem}
+Goal: {goal}
+Monetization Strategy: {monetization}
+Impact: {impact}
+Timeline: {timeline}
 
-# FORMAT:
-# <div class="revenue-box">
-#   <h3>Suggested Revenue Model</h3>
-#   <p>...</p>
-# </div>
+FORMAT:
+<div class="revenue-box">
+  <h3>Suggested Revenue Model</h3>
+  <p>...</p>
+</div>
 
-# <div class="revenue-box">
-#   <h3>Pricing Strategy</h3>
-#   <p>...</p>
-# </div>
+<div class="revenue-box">
+  <h3>Pricing Strategy</h3>
+  <p>...</p>
+</div>
 
-# <div class="revenue-box">
-#   <h3>Financial Risks</h3>
-#   <p>...</p>
-# </div>
+<div class="revenue-box">
+  <h3>Financial Risks</h3>
+  <p>...</p>
+</div>
 
-# Keep tone professional and concise. Just output clean HTML for these 3 boxes.
-# """
+Keep tone professional and concise. Just output clean HTML for these 3 boxes.
+"""
 
-#     monetization_html = generate_response(prompt)
+    monetization_html = generate_response(prompt)
 
-#     # Clean any markdown markers if accidentally included
-#     if monetization_html.startswith("```html"):
-#         monetization_html = monetization_html.replace("```html", "").strip()
-#     if monetization_html.endswith("```"):
-#         monetization_html = monetization_html.rsplit("```", 1)[0].strip()
-#     latest_entry = Validate_form.objects.filter(user=request.user).order_by('-created_at').first()
-#     if latest_entry:
-#         latest_entry.monetization_suggestion = monetization_html
-#         latest_entry.save()
+    # Clean any markdown markers if accidentally included
+    if monetization_html.startswith("```html"):
+        monetization_html = monetization_html.replace("```html", "").strip()
+    if monetization_html.endswith("```"):
+        monetization_html = monetization_html.rsplit("```", 1)[0].strip()
+    latest_entry = Validate_form.objects.filter(user=request.user).order_by('-created_at').first()
+    if latest_entry:
+        latest_entry.monetization_suggestion = monetization_html
+        latest_entry.save()
 
-#     return render(request, "dashboard/monetization.html", {"monetization_html": monetization_html})
+    return render(request, "dashboard/monetization.html", {"monetization_html": monetization_html})
 
-v
+
 
 @login_required
 def risk(request):
