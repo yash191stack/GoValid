@@ -575,26 +575,7 @@ JSON FORMAT:
 
 #     return render(request, "dashboard/monetization.html", {"monetization_html": monetization_html})
 
-@login_required
-def monetization(request):
-    startup_data = request.session.get("startup_data")
-    
-    if not startup_data:
-        return redirect("dashboard:dashboard")
-    
-    # Simple test HTML
-    monetization_html = """
-    <div class="revenue-box">
-        <h3>Revenue Model</h3>
-        <p>Subscription-based model recommended</p>
-    </div>
-    <div class="revenue-box">
-        <h3>Pricing Strategy</h3>
-        <p>Freemium with premium features</p>
-    </div>
-    """
-    
-    return render(request, "dashboard/monetization.html", {"monetization_html": monetization_html})
+v
 
 @login_required
 def risk(request):
