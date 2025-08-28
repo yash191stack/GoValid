@@ -577,6 +577,51 @@ Keep tone professional and concise. Just output clean HTML for these 3 boxes.
 
 
 
+# @login_required
+# def risk(request):
+#     startup_data = request.session.get("startup_data")
+
+#     if not startup_data:
+#         return redirect("dashboard:dashboard")
+
+#     idea = startup_data.get('startup_idea', '')
+#     domain = startup_data.get('business_domain', '')
+#     problem = startup_data.get('problem_statement', '')
+#     goal = startup_data.get('business_goal', '')
+#     monetization = startup_data.get('monetization_strategy', '')
+#     impact = startup_data.get('social_impact', '')
+#     timeline = startup_data.get('timeline', '')
+
+#     prompt = f"""
+# IMPORTANT: Output only clean HTML. No markdown.
+
+# Startup Details:
+# Idea: {idea}
+# Domain: {domain}
+# Problem: {problem}
+# Goal: {goal}
+# Monetization: {monetization}
+# Impact: {impact}
+# Timeline: {timeline}
+
+# FORMAT:
+# <div class="risk-item">
+#   <h3>🔹 Financial Risk – HIGH 🔴</h3>
+#   <p>Reasoning text...</p>
+# </div>
+# Repeat for: Technical Risk, Market Risk, Operational Risk.
+# Wrap all in one div class="risk-wrapper".
+# """
+
+#     raw_html = generate_response(prompt)
+#     latest_entry = Validate_form.objects.filter(user=request.user).order_by('-created_at').first()
+#     if latest_entry:
+#         latest_entry.risk_score = "N/A"  # or parse from AI if needed
+#         latest_entry.risk_comment = raw_html  # saving HTML for now
+#         latest_entry.save()
+
+#     return render(request, "dashboard/risk.html", {"risk_html": raw_html})
+
 @login_required
 def risk(request):
     startup_data = request.session.get("startup_data")
@@ -593,35 +638,29 @@ def risk(request):
     timeline = startup_data.get('timeline', '')
 
     prompt = f"""
-IMPORTANT: Output only clean HTML. No markdown.
+You are an AI that must return ONLY valid HTML (no markdown, no plain text).
+Generate a <div class="risk-wrapper"> containing 4 <div class="risk-item"> blocks:
+1. Financial Risk
+2. Technical Risk
+3. Market Risk
+4. Operational Risk
 
-Startup Details:
-Idea: {idea}
-Domain: {domain}
-Problem: {problem}
-Goal: {goal}
-Monetization: {monetization}
-Impact: {impact}
-Timeline: {timeline}
-
-FORMAT:
+Each block must look like:
 <div class="risk-item">
-  <h3>🔹 Financial Risk – HIGH 🔴</h3>
+  <h3>🔹 Risk Name – LEVEL 🔴🟠🟢</h3>
   <p>Reasoning text...</p>
 </div>
-Repeat for: Technical Risk, Market Risk, Operational Risk.
-Wrap all in one div class="risk-wrapper".
 """
 
     raw_html = generate_response(prompt)
+
     latest_entry = Validate_form.objects.filter(user=request.user).order_by('-created_at').first()
     if latest_entry:
-        latest_entry.risk_score = "N/A"  # or parse from AI if needed
-        latest_entry.risk_comment = raw_html  # saving HTML for now
+        latest_entry.risk_score = "N/A"
+        latest_entry.risk_comment = raw_html
         latest_entry.save()
 
     return render(request, "dashboard/risk.html", {"risk_html": raw_html})
-
 
 
 
